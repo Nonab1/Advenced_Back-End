@@ -4,7 +4,7 @@ const server = http.createServer((request, response) => {
 // request = so'rov
 // response = javob
 console.log(request.url);
-response.write("Hello world");
+response.write("<h1>Hello world<h1>");
 response.end();
 })
 
