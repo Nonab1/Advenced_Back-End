@@ -1,4 +1,6 @@
 const http = require('http');
+const fs = require('fs');
+const path = require('path');
 
 // const server = http.createServer((request, response) => {
 // // request = so'rov
@@ -11,13 +13,25 @@ const http = require('http');
 const server = http.createServer((req, res) => {
     if(req.method === "GET"){
         res.writeHead(200, {"Content-Type": "text/html; charset=UTF-8"});
-        res.end(`
-            <h1>Send name</h1>
-            <form method="post" action="/">
-                <input name="name" placeholder="Name">
-                <button type="sumbit">Sumbit</button>
-            </form>    
-        `)
+
+        if(req.url === "/"){
+            fs.readFile(path.join(__dirname, "templates", "index.html"), "utf-8", (err, conten) =>{
+                if (err) throw err
+                res.end(conten);
+            })
+        }else if(req.url === "/about"){
+            fs.readFile(path.join(__dirname, "templates", "about.html"), "utf-8", (err, conten) =>{
+                if (err) throw err
+                res.end(conten);
+            })
+        }else if(req.url === "/contact"){
+            fs.readFile(path.join(__dirname, "templates", "contact.html"), "utf-8", (err, conten) =>{
+                if (err) throw err
+                res.end(conten);
+            })
+        }
+
+
     }else if(req.method === "POST"){
         res.writeHead(200, {"Content-Type": "text/html; charset=UTF-8"});
         const name = []
