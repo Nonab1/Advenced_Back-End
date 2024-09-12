@@ -29,6 +29,10 @@ const server = http.createServer((req, res) => {
                 if (err) throw err
                 res.end(conten);
             })
+        }else if(req.url === "/api/admin"){
+            res.writeHead(200, {"Content-Type": "text/html; charset=UTF-8"});
+            const admin = {nickname: "Nonab"}
+            res.end(JSON.stringify(admin));
         }
 
 
